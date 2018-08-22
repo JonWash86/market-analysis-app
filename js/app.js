@@ -1,17 +1,19 @@
 function addImages() {
   var container = document.getElementById('image-container');
   var image = document.createElement('img');
-  var index = generateRandom(0, images.length - 1);
+  shuffle(images);
+  console.log(images);
   container.innerText='';
-  image.setAttribute('src', 'img/' + images[index].fileName);
+  image.setAttribute('src', 'img/' + images[0].fileName);
+  image.addEventListener('click', voteMade);
   container.appendChild(image);
   var image = document.createElement('img');
-  var index = generateRandom(0, images.length - 1);
-  image.setAttribute('src', 'img/' + images[index].fileName);
+  image.setAttribute('src', 'img/' + images[1].fileName);
+  image.addEventListener('click', voteMade);
   container.appendChild(image);
   var image = document.createElement('img');
-  var index = generateRandom(0, images.length - 1);
-  image.setAttribute('src', 'img/' + images[index].fileName);
+  image.setAttribute('src', 'img/' + images[2].fileName);
+  image.addEventListener('click', voteMade);
   container.appendChild(image);
 };
 
@@ -40,4 +42,24 @@ function generateRandom(min, max){
   return Math.floor((Math.random() * (max - min)) + min);
 }
 
+//Fisher-Yates Shuffle
+function shuffle(array){
+  var m = array.length, t, i;
+  while(m){
+    i = Math.floor(Math.random() * m--);
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+  return array;
+}
+
+
+Array.from(images.length, (v, i) => i);
+
 window.addEventListener('load', addImages);
+
+function voteMade(event){
+  console.log(event.target.src);
+  addImages();
+}

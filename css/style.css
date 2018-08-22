@@ -1,6 +1,6 @@
 h1 {
   display: inline-block;
-  background-color:yellow;
+  background-color: #FCBA04;
   padding-right: 25px;
   margin-bottom: -5px;
 }
@@ -17,7 +17,6 @@ h3 {
   text-align: right;
   margin-right: 100px;
   background-color: #3A86FF;
-
 }
 
 #image-container {
@@ -28,7 +27,7 @@ h3 {
 #image-container img {
   height: 250px;
   margin: 0 20px;
-  box-shadow:
+  box-shadow:3px 6px 8px #FCBA04;
   border-radius:
   cursor: pointer;
 }

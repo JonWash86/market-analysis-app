@@ -71,6 +71,13 @@ function voteMade(event){
   var winner = event.target.src;
   var winnerName = winner.substring(winner.lastIndexOf('/') +1);
   console.log(winnerName);
+  for (i = 0; i < images.length; i++){
+    if (winnerName == images[i].fileName){
+      console.log('winner! '+ images[i].fileName);
+      images[i].totalVotes += 1;
+      console.log(images[i].totalVotes);
+    };
+  };
   var prompt = document.getElementById('prompt');
   if (totalClicks < 15){
     addImages();

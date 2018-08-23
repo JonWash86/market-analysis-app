@@ -85,5 +85,7 @@ function voteMade(event){
   if (totalClicks == 15){
     var container = document.getElementById('image-container');
     container.innerText='You did it!';//this will be replaced with the table listing votes.
+    var table = document.createElement('TABLE');
+    var heading = document.createElement('th');
   };
 }

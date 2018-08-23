@@ -17,7 +17,11 @@ function addImages() {
   image.addEventListener('click', voteMade);
   image.addEventListener('click', tallyVote);
   container.appendChild(image);
+  totalClicks += 1;
+  console.log('you have clicked ' + totalClicks + ' times.');
 };
+
+var totalClicks = -1;
 
 var productImage = function(fileName) {
   this.fileName = fileName;
@@ -46,11 +50,11 @@ function generateRandom(min, max){
 
 //Fisher-Yates Shuffle
 function shuffle(array){
-  var m = array.length, t, i;
-  while(m){
-    i = Math.floor(Math.random() * m--);
-    t = array[m];
-    array[m] = array[i];
+  var index = array.length, t, i;
+  while(index){
+    i = Math.floor(Math.random() * index--);
+    t = array[index];
+    array[index] = array[i];
     array[i] = t;
   }
   return array;
@@ -64,11 +68,15 @@ function tallyVote(productImage){
 }
 
 function voteMade(event){
-  // console.log(event.target.src);
-  // console.log('this is the event.target:' + event.target);
-  addImages();
-  // console.log(event.target.totalVotes);
-  // event.target.totalVotes = event.target.totalVotes + 1;
-  // console.log(event.target);
-  // console.log(event.target.totalVotes);
+  var winner = event.target.src;
+  var winnerName = winner.substring(winner.lastIndexOf('/') +1);
+  console.log(winnerName);
+  var prompt = document.getElementById('prompt');
+  if (totalClicks < 15){
+    addImages();
+  };
+  if (totalClicks == 15){
+    var container = document.getElementById('image-container');
+    container.innerText='You did it!';//this will be replaced with the table listing votes.
+  };
 }

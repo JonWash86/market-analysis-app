@@ -2,18 +2,20 @@ function addImages() {
   var container = document.getElementById('image-container');
   var image = document.createElement('img');
   shuffle(images);
-  console.log(images);
   container.innerText='';
   image.setAttribute('src', 'img/' + images[0].fileName);
   image.addEventListener('click', voteMade);
+  image.addEventListener('click', tallyVote);
   container.appendChild(image);
   var image = document.createElement('img');
   image.setAttribute('src', 'img/' + images[1].fileName);
   image.addEventListener('click', voteMade);
+  image.addEventListener('click', tallyVote);
   container.appendChild(image);
   var image = document.createElement('img');
   image.setAttribute('src', 'img/' + images[2].fileName);
   image.addEventListener('click', voteMade);
+  image.addEventListener('click', tallyVote);
   container.appendChild(image);
 };
 
@@ -54,12 +56,19 @@ function shuffle(array){
   return array;
 }
 
-
-Array.from(images.length, (v, i) => i);
-
 window.addEventListener('load', addImages);
 
+function tallyVote(productImage){
+  this.totalVotes += 1;
+  console.log('image clicked'); //+ imageattribute);
+}
+
 function voteMade(event){
-  console.log(event.target.src);
+  // console.log(event.target.src);
+  // console.log('this is the event.target:' + event.target);
   addImages();
+  // console.log(event.target.totalVotes);
+  // event.target.totalVotes = event.target.totalVotes + 1;
+  // console.log(event.target);
+  // console.log(event.target.totalVotes);
 }

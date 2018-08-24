@@ -36,7 +36,7 @@ images.push(new productImage('cthulhu.jpg', 'Cthulhu'));
 images.push(new productImage('dragon.jpg', 'Dragon Meat'));
 images.push(new productImage('pen.jpg', 'Writing Utensils'));
 images.push(new productImage('scissors.jpg', 'Multipurpose Scissors'));
-images.push(new productImage('shark.jpg', 'Jaws Bag'));
+images.push(new productImage('shark.jpg', 'Jaws Cosplay Kit'));
 images.push(new productImage('sweep.jpg', 'Swiffer Jr.'));
 images.push(new productImage('unicorn.jpg', 'Unicorn Meat'));
 images.push(new productImage('usb.jpg', 'Undersea USB'));
@@ -85,14 +85,16 @@ function voteMade(event){
     heading.setAttribute('colspan', '2');
     table.appendChild(heading);
     container.appendChild(table);
-    for (var index = 0; index < images.fileName; index++){
+    images.sort(function(a, b){return b.totalVotes - a.totalVotes});
+    for (var index = 0; index < images.length; index++){
       var cell = document.createElement('td');
       var row = document.createElement('tr');
-      var product = images[i].productName;
+      var product = images[index].productName;
+      console.log(product);
       cell.innerText = product;
       row.appendChild(cell);
       cell = document.createElement('td');
-      var votes = images[i].totalVotes;
+      var votes = images[index].totalVotes;
       cell.innerText = votes;
       row.appendChild(cell);
       table.appendChild(row);

@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Pathway+Gothic+One');
+
 h1 {
+  font-family: 'Pathway Gothic One', sans-serif;
   display: inline-block;
   background-color: #FCBA04;
   padding-right: 25px;
@@ -10,13 +13,27 @@ h2 {
   background-color: #3BB273;
   margin-left: 50px;
   padding-right: 25px;
-
+  margin-bottom: 5px
 }
 
 h3 {
+  display:flex;
   text-align: right;
-  margin-right: 100px;
+  font-size: 18px;
+  margin-left: 200px;
   background-color: #3A86FF;
+  justify-content: flex-end;
+}
+
+p{
+    font-family: 'Pathway Gothic One', sans-serif;
+}
+
+#instructions{
+  margin-bottom: 10px;
+  background-color: #3A86FF;
+  width: 60%;
+  margin-left:90px;
 }
 
 #image-container {
@@ -30,4 +47,8 @@ h3 {
   box-shadow:3px 6px 8px #FCBA04;
   border-radius:
   cursor: pointer;
+}
+
+#resultsTable{
+
 }

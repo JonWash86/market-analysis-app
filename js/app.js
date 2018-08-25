@@ -16,7 +16,7 @@ function imageBuild(i){
   container.appendChild(image);
 };
 
-var totalClicks = -1;
+var totalClicks = 13;
 
 var productImage = function(fileName, productName) {
   this.fileName = fileName;
@@ -109,7 +109,7 @@ function finalTable(){
     cell.setAttribute('id', 'resultsTable')
     var row = document.createElement('tr');
     var product = images[index].productName;
-    cell.innerText = product;
+    cell.innerText = product + ':';
     row.appendChild(cell);
     cell = document.createElement('td');
     cell.setAttribute('id', 'resultsTable')
@@ -120,7 +120,7 @@ function finalTable(){
     cell = document.createElement('td');
     cell.setAttribute('id', 'resultsTable')
     product = images[index +1 ].productName;
-    cell.innerText = product;
+    cell.innerText = product + ':';
     row.appendChild(cell);
     cell = document.createElement('td');
     cell.setAttribute('id', 'resultsTable')

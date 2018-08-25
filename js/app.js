@@ -1,22 +1,19 @@
 function addImages() {
   var container = document.getElementById('image-container');
-  var image = document.createElement('img');
-  shuffle(images);
   container.innerText='';
-  image.setAttribute('src', 'img/' + images[0].fileName);
-  image.addEventListener('click', voteMade);
-  container.appendChild(image);
-  var image = document.createElement('img');
-  image.setAttribute('src', 'img/' + images[1].fileName);
-  image.addEventListener('click', voteMade);
-  container.appendChild(image);
-  var image = document.createElement('img');
-  image.setAttribute('src', 'img/' + images[2].fileName);
-  image.addEventListener('click', voteMade);
-  // image.addEventListener('click', relayStatus);
-  container.appendChild(image);
+  shuffle(images);
+  imageBuild(0);
+  imageBuild(1);
+  imageBuild(2);
   totalClicks += 1;
-  console.log('you have clicked ' + totalClicks + ' times.');
+};
+
+function imageBuild(i){
+  var container = document.getElementById('image-container');
+  var image = document.createElement('img');
+  image.setAttribute('src', 'img/' + images[i].fileName);
+  image.addEventListener('click', voteMade);
+  container.appendChild(image);
 };
 
 var totalClicks = -1;
@@ -63,61 +60,74 @@ window.addEventListener('load', addImages);
 
 function voteMade(event){
   this.totalVotes += 1;
+  relayStatus();
   var winner = event.target.src;
   var winnerName = winner.substring(winner.lastIndexOf('/') +1);
-  console.log(winnerName);
   for (i = 0; i < images.length; i++){
     if (winnerName == images[i].fileName){
-      console.log('winner! '+ images[i].fileName);
       images[i].totalVotes += 1;
-      console.log(images[i].totalVotes);
     };
   };
-  var prompt = document.getElementById('prompt');
   if (totalClicks == 14){
-    console.log('it\'s over!')
-    var container = document.getElementById('image-container');
-    container.innerText='';
-    var table = document.createElement('TABLE');
-    var heading = document.createElement('th');
-    table.setAttribute('class', 'resultsTable');
-    heading.innerText = 'Results!'
-    heading.setAttribute('colspan', '2');
-    table.appendChild(heading);
-    container.appendChild(table);
-    images.sort(function(a, b){return b.totalVotes - a.totalVotes});
-    for (var index = 0; index < images.length; index++){
-      var cell = document.createElement('td');
-      var row = document.createElement('tr');
-      var product = images[index].productName;
-      console.log(product);
-      cell.innerText = product;
-      row.appendChild(cell);
-      cell = document.createElement('td');
-      var votes = images[index].totalVotes;
-      cell.innerText = votes;
-      row.appendChild(cell);
-      table.appendChild(row);
-    };
+    finalTable();
   }
   else {
     addImages();
-  }
-  relayStatus();
-}
+  };
+};
 
 function relayStatus(){
   var status = document.getElementById('prompt');
-  if (totalClicks == 14){
+  if (totalClicks ==14) {
+    status.innerText = 'You\'ve done all the voting there is to do. Give yourself a pat on the back.';
+  }
+  else if (totalClicks == 13){
     status.innerText = 'This is your last vote. Don\'t blow it!'
   }
-  else if (totalClicks < 15 && totalClicks >= 10){
+  else if (totalClicks < 14 && totalClicks >= 10){
     status.innerText = 'Great! You have ' + (15 - totalClicks) + ' votes left. Use them wisely.';
   }
-  else if (totalClicks > 0 && totalClicks < 15){
-    status.innerText = totalClicks + ' votes made and ' + (15 - totalClicks) + ' to go. Keep it up!';
-  }
-  else {
-    status.InnerText = 'You\'ve done all the voting there is to do. Give yourself a pat on the back.';
+  else if (totalClicks > -1 && totalClicks < 14){
+    status.innerText = (totalClicks +1) + ' votes made and ' + (14 - totalClicks) + ' to go. Keep it up!';
+  };
+};
+
+function finalTable(){
+  var container = document.getElementById('image-container');
+  var tableContainer = document.getElementById('tableZone');
+  container.innerText='';
+  var table = document.createElement('TABLE');
+  var heading = document.createElement('th');
+  table.setAttribute('id', 'resultsTable');
+  heading.innerText = 'Results:'
+  heading.setAttribute('colspan', '4');
+  table.appendChild(heading);
+  tableContainer.appendChild(table);
+  images.sort(function(a, b){return b.totalVotes - a.totalVotes});
+  for (var index = 0; index < images.length; index+=2){
+    var cell = document.createElement('td');
+    cell.setAttribute('id', 'resultsTable')
+    var row = document.createElement('tr');
+    var product = images[index].productName;
+    cell.innerText = product;
+    row.appendChild(cell);
+    cell = document.createElement('td');
+    cell.setAttribute('id', 'resultsTable')
+    var votes = images[index].totalVotes;
+    cell.innerText = votes;
+    row.appendChild(cell);
+    //
+    cell = document.createElement('td');
+    cell.setAttribute('id', 'resultsTable')
+    product = images[index +1 ].productName;
+    cell.innerText = product;
+    row.appendChild(cell);
+    cell = document.createElement('td');
+    cell.setAttribute('id', 'resultsTable')
+    votes = images[index +1 ].totalVotes;
+    cell.innerText = votes;
+    row.appendChild(cell);
+    //
+    table.appendChild(row);
   };
 };

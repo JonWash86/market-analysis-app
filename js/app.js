@@ -104,7 +104,7 @@ function finalTable(){
   table.appendChild(heading);
   tableContainer.appendChild(table);
   images.sort(function(a, b){return b.totalVotes - a.totalVotes});
-  for (var index = 0; index < images.length; index+=1){
+  for (var index = 0; index < images.length; index+=2){
     var cell = document.createElement('td');
     cell.setAttribute('id', 'resultsTable')
     var row = document.createElement('tr');

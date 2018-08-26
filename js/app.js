@@ -70,12 +70,10 @@ function voteMade(event){
   };
   if (totalClicks == 14){
     chartUpdate();
-    var container = document.getElementById('image-container');
-    container.innerText = '';
+    resetButton();
   }
   else {
     addImages();
-
   };
 };
 
@@ -94,6 +92,19 @@ function relayStatus(){
     status.innerText = (totalClicks +1) + ' votes made and ' + (14 - totalClicks) + ' to go. Keep it up!';
   };
 };
+
+function resetButton(){
+  var container = document.getElementById('image-container');
+  container.innerText = '';
+  container.innerHTML = '<input type=\'button\', value=\'Take the Poll Again!\', onclick=\'resetPoll()\'></input>';
+  var chartContainer = document.getElementById('chartContainer');
+}
+
+function resetPoll(){
+  chartContainer.innerText='';
+  totalClicks == 0;
+  addImages();
+}
 
 // function finalTable(){
 //   var container = document.getElementById('image-container');

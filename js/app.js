@@ -44,7 +44,7 @@ function generateRandom(min, max){
   return Math.floor((Math.random() * (max - min)) + min);
 }
 
-//Fisher-Yates Shuffle
+//Fisher-Yates Shuffle, illustrated here: https://bost.ocks.org/mike/shuffle/
 function shuffle(array){
   var index = array.length, t, i;
   while(index){
@@ -116,7 +116,6 @@ function finalTable(){
     var votes = images[index].totalVotes;
     cell.innerText = votes;
     row.appendChild(cell);
-    //
     cell = document.createElement('td');
     cell.setAttribute('id', 'resultsTable')
     product = images[index +1 ].productName;
@@ -127,7 +126,6 @@ function finalTable(){
     votes = images[index +1 ].totalVotes;
     cell.innerText = votes;
     row.appendChild(cell);
-    //
     table.appendChild(row);
   };
 };

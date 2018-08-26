@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Pathway+Gothic+One');
+@import url('https://fonts.googleapis.com/css?family=Rubik:700');
 
 h1 {
-  font-family: 'Pathway Gothic One', sans-serif;
+  font-family: 'Rubik', sans-serif;
   display: inline-block;
   background-color: #FCBA04;
   padding-right: 25px;
@@ -68,7 +68,7 @@ p{
 }
 
 th{
-  font-family: 'Pathway Gothic One', sans-serif;
+  font-family: 'Rubik', sans-serif;
   font-size: 32px;
   text-align: left;
   padding: 15px;

@@ -18,10 +18,10 @@ function imageBuild(i){
 
 var totalClicks = -1;
 
-var productImage = function(fileName, productName) {
+var productImage = function(fileName, label) {
   this.fileName = fileName;
-  this.productName = productName;
-  this.totalVotes = 0;
+  this.label = label;
+  this.y = 0;
 };
 
 var images = [];
@@ -59,20 +59,23 @@ function shuffle(array){
 window.addEventListener('load', addImages);
 
 function voteMade(event){
-  this.totalVotes += 1;
+  this.y += 1;
   relayStatus();
   var winner = event.target.src;
   var winnerName = winner.substring(winner.lastIndexOf('/') +1);
   for (i = 0; i < images.length; i++){
     if (winnerName == images[i].fileName){
-      images[i].totalVotes += 1;
+      images[i].y += 1;
     };
   };
   if (totalClicks == 14){
-    finalTable();
+    chartUpdate();
+    var container = document.getElementById('image-container');
+    container.innerText = '';
   }
   else {
     addImages();
+
   };
 };
 
@@ -92,40 +95,40 @@ function relayStatus(){
   };
 };
 
-function finalTable(){
-  var container = document.getElementById('image-container');
-  var tableContainer = document.getElementById('tableZone');
-  container.innerText='';
-  var table = document.createElement('TABLE');
-  var heading = document.createElement('th');
-  table.setAttribute('id', 'resultsTable');
-  heading.innerText = 'Results:'
-  heading.setAttribute('colspan', '4');
-  table.appendChild(heading);
-  tableContainer.appendChild(table);
-  images.sort(function(a, b){return b.totalVotes - a.totalVotes});
-  for (var index = 0; index < images.length; index+=2){
-    var cell = document.createElement('td');
-    cell.setAttribute('id', 'resultsTable')
-    var row = document.createElement('tr');
-    var product = images[index].productName;
-    cell.innerText = product + ':';
-    row.appendChild(cell);
-    cell = document.createElement('td');
-    cell.setAttribute('id', 'resultsTable')
-    var votes = images[index].totalVotes;
-    cell.innerText = votes;
-    row.appendChild(cell);
-    cell = document.createElement('td');
-    cell.setAttribute('id', 'resultsTable')
-    product = images[index +1 ].productName;
-    cell.innerText = product + ':';
-    row.appendChild(cell);
-    cell = document.createElement('td');
-    cell.setAttribute('id', 'resultsTable')
-    votes = images[index +1 ].totalVotes;
-    cell.innerText = votes;
-    row.appendChild(cell);
-    table.appendChild(row);
-  };
-};
+// function finalTable(){
+//   var container = document.getElementById('image-container');
+//   var tableContainer = document.getElementById('tableZone');
+//   container.innerText='';
+//   var table = document.createElement('TABLE');
+//   var heading = document.createElement('th');
+//   table.setAttribute('id', 'resultsTable');
+//   heading.innerText = 'Results:'
+//   heading.setAttribute('colspan', '4');
+//   table.appendChild(heading);
+//   tableContainer.appendChild(table);
+//   images.sort(function(a, b){return b.totalVotes - a.totalVotes});
+//   for (var index = 0; index < images.length; index+=2){
+//     var cell = document.createElement('td');
+//     cell.setAttribute('id', 'resultsTable')
+//     var row = document.createElement('tr');
+//     var product = images[index].productName;
+//     cell.innerText = product + ':';
+//     row.appendChild(cell);
+//     cell = document.createElement('td');
+//     cell.setAttribute('id', 'resultsTable')
+//     var votes = images[index].totalVotes;
+//     cell.innerText = votes;
+//     row.appendChild(cell);
+//     cell = document.createElement('td');
+//     cell.setAttribute('id', 'resultsTable')
+//     product = images[index +1 ].productName;
+//     cell.innerText = product + ':';
+//     row.appendChild(cell);
+//     cell = document.createElement('td');
+//     cell.setAttribute('id', 'resultsTable')
+//     votes = images[index +1 ].totalVotes;
+//     cell.innerText = votes;
+//     row.appendChild(cell);
+//     table.appendChild(row);
+//   };
+// };

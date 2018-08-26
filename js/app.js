@@ -104,6 +104,10 @@ function resetPoll(){
   chartContainer.innerText='';
   totalClicks == 0;
   addImages();
+  for (i = 0; i < images.length; i++){
+    images[i].y = 0;
+  totalClicks = 0;
+  }
 }
 
 // function finalTable(){

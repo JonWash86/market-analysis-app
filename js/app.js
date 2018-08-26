@@ -5,7 +5,6 @@ function addImages() {
   imageBuild(0);
   imageBuild(1);
   imageBuild(2);
-  totalClicks += 1;
 };
 
 function imageBuild(i){
@@ -16,7 +15,7 @@ function imageBuild(i){
   container.appendChild(image);
 };
 
-var totalClicks = -1;
+var totalClicks = 0;
 
 var productImage = function(fileName, productName) {
   this.fileName = fileName;
@@ -59,7 +58,7 @@ function shuffle(array){
 window.addEventListener('load', addImages);
 
 function voteMade(event){
-  this.totalVotes += 1;
+  totalClicks += 1;
   relayStatus();
   var winner = event.target.src;
   var winnerName = winner.substring(winner.lastIndexOf('/') +1);
@@ -68,7 +67,7 @@ function voteMade(event){
       images[i].totalVotes += 1;
     };
   };
-  if (totalClicks == 14){
+  if (totalClicks == 15){
     finalTable();
   }
   else {
@@ -78,18 +77,19 @@ function voteMade(event){
 
 function relayStatus(){
   var status = document.getElementById('prompt');
-  if (totalClicks ==14) {
+  if (totalClicks ==15) {
     status.innerText = 'You\'ve done all the voting there is to do. Give yourself a pat on the back.';
   }
-  else if (totalClicks == 13){
+  else if (totalClicks == 14){
     status.innerText = 'This is your last vote. Don\'t blow it!'
   }
-  else if (totalClicks < 14 && totalClicks >= 10){
+  else if (totalClicks < 13 && totalClicks >= 10){
     status.innerText = 'Great! You have ' + (15 - totalClicks) + ' votes left. Use them wisely.';
   }
-  else if (totalClicks > -1 && totalClicks < 14){
-    status.innerText = (totalClicks +1) + ' votes made and ' + (14 - totalClicks) + ' to go. Keep it up!';
+  else if (totalClicks > -1 && totalClicks < 13){
+    status.innerText = (totalClicks) + ' votes made and ' + (15 - totalClicks) + ' to go. Keep it up!';
   };
+  document.getElementById('progress-bar').style.width = Math.round(totalClicks / 15 * 100) + '%';
 };
 
 function finalTable(){
@@ -98,7 +98,7 @@ function finalTable(){
   container.innerText='';
   var table = document.createElement('TABLE');
   var heading = document.createElement('th');
-  table.setAttribute('id', 'resultsTable');
+  table.setAttribute('class', 'resultsTable');
   heading.innerText = 'Results:'
   heading.setAttribute('colspan', '4');
   table.appendChild(heading);
@@ -106,23 +106,23 @@ function finalTable(){
   images.sort(function(a, b){return b.totalVotes - a.totalVotes});
   for (var index = 0; index < images.length; index+=2){
     var cell = document.createElement('td');
-    cell.setAttribute('id', 'resultsTable')
+    cell.setAttribute('class', 'resultsTable')
     var row = document.createElement('tr');
     var product = images[index].productName;
     cell.innerText = product + ':';
     row.appendChild(cell);
     cell = document.createElement('td');
-    cell.setAttribute('id', 'resultsTable')
+    cell.setAttribute('class', 'resultsTable')
     var votes = images[index].totalVotes;
     cell.innerText = votes;
     row.appendChild(cell);
     cell = document.createElement('td');
-    cell.setAttribute('id', 'resultsTable')
+    cell.setAttribute('class', 'resultsTable')
     product = images[index +1 ].productName;
     cell.innerText = product + ':';
     row.appendChild(cell);
     cell = document.createElement('td');
-    cell.setAttribute('id', 'resultsTable')
+    cell.setAttribute('class', 'resultsTable')
     votes = images[index +1 ].totalVotes;
     cell.innerText = votes;
     row.appendChild(cell);

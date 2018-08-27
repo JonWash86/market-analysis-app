@@ -4,7 +4,7 @@
  var chartUpdate = function () {
     var chart = new CanvasJS.Chart("chartContainer", {
         title: {
-            text: "result"
+            text: "Your Results:"
         },
         data: [
             {

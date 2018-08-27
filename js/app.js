@@ -75,6 +75,7 @@ function voteMade(event){
   else {
     addImages();
   };
+  document.getElementById('progress-bar').style.width = Math.round(totalClicks / 15 * 100) + '%';
 };
 
 function relayStatus(){
@@ -86,7 +87,7 @@ function relayStatus(){
     status.innerText = 'This is your last vote. Don\'t blow it!'
   }
   else if (totalClicks < 14 && totalClicks >= 10){
-    status.innerText = 'Great! You have ' + (15 - totalClicks) + ' votes left. Use them wisely.';
+    status.innerText = 'Great! You have ' + (14 - totalClicks) + ' votes left. Use them wisely.';
   }
   else if (totalClicks > -1 && totalClicks < 14){
     status.innerText = (totalClicks +1) + ' votes made and ' + (14 - totalClicks) + ' to go. Keep it up!';
@@ -108,42 +109,6 @@ function resetPoll(){
     images[i].y = 0;
   totalClicks = 0;
   }
+  var status = document.getElementById('prompt');
+  status.innerText = ('Help us pick the junk we sell you next - at markup!');
 }
-
-// function finalTable(){
-//   var container = document.getElementById('image-container');
-//   var tableContainer = document.getElementById('tableZone');
-//   container.innerText='';
-//   var table = document.createElement('TABLE');
-//   var heading = document.createElement('th');
-//   table.setAttribute('id', 'resultsTable');
-//   heading.innerText = 'Results:'
-//   heading.setAttribute('colspan', '4');
-//   table.appendChild(heading);
-//   tableContainer.appendChild(table);
-//   images.sort(function(a, b){return b.totalVotes - a.totalVotes});
-//   for (var index = 0; index < images.length; index+=2){
-//     var cell = document.createElement('td');
-//     cell.setAttribute('id', 'resultsTable')
-//     var row = document.createElement('tr');
-//     var product = images[index].productName;
-//     cell.innerText = product + ':';
-//     row.appendChild(cell);
-//     cell = document.createElement('td');
-//     cell.setAttribute('id', 'resultsTable')
-//     var votes = images[index].totalVotes;
-//     cell.innerText = votes;
-//     row.appendChild(cell);
-//     cell = document.createElement('td');
-//     cell.setAttribute('id', 'resultsTable')
-//     product = images[index +1 ].productName;
-//     cell.innerText = product + ':';
-//     row.appendChild(cell);
-//     cell = document.createElement('td');
-//     cell.setAttribute('id', 'resultsTable')
-//     votes = images[index +1 ].totalVotes;
-//     cell.innerText = votes;
-//     row.appendChild(cell);
-//     table.appendChild(row);
-//   };
-// };

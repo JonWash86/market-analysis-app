@@ -57,7 +57,7 @@ p{
   height: 26px;
   width: 0;
   background-color: aqua;
-  position: relative;
+  position: absolute;
   top: -1px;
   right: 0;
   z-index: -1;
@@ -81,4 +81,11 @@ tr:nth-child(odd){
 
 #chartContainer{
   margin:auto;
+}
+
+#statusArea{
+  box-shadow: 0 0 4px aqua;
+  border-radius: 13px;
+  position: relative;
+  height: 26px;
 }

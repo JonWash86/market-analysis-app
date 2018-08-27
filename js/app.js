@@ -5,7 +5,6 @@ function addImages() {
   imageBuild(0);
   imageBuild(1);
   imageBuild(2);
-  totalClicks += 1;
 };
 
 function imageBuild(i){
@@ -16,7 +15,7 @@ function imageBuild(i){
   container.appendChild(image);
 };
 
-var totalClicks = -1;
+var totalClicks = 0;
 
 var productImage = function(fileName, label) {
   this.fileName = fileName;
@@ -60,6 +59,7 @@ window.addEventListener('load', addImages);
 
 function voteMade(event){
   this.y += 1;
+  totalClicks += 1;
   relayStatus();
   var winner = event.target.src;
   var winnerName = winner.substring(winner.lastIndexOf('/') +1);
@@ -68,7 +68,7 @@ function voteMade(event){
       images[i].y += 1;
     };
   };
-  if (totalClicks == 14){
+  if (totalClicks == 15){
     chartUpdate();
     resetButton();
   }
@@ -80,17 +80,17 @@ function voteMade(event){
 
 function relayStatus(){
   var status = document.getElementById('prompt');
-  if (totalClicks ==14) {
+  if (totalClicks ==15) {
     status.innerText = 'You\'ve done all the voting there is to do. Give yourself a pat on the back.';
   }
-  else if (totalClicks == 13){
+  else if (totalClicks == 14){
     status.innerText = 'This is your last vote. Don\'t blow it!'
   }
-  else if (totalClicks < 14 && totalClicks >= 10){
-    status.innerText = 'Great! You have ' + (14 - totalClicks) + ' votes left. Use them wisely.';
+  else if (totalClicks < 15 && totalClicks >= 10){
+    status.innerText = 'Great! You have ' + (15 - totalClicks) + ' votes left. Use them wisely.';
   }
-  else if (totalClicks > -1 && totalClicks < 14){
-    status.innerText = (totalClicks +1) + ' votes made and ' + (14 - totalClicks) + ' to go. Keep it up!';
+  else if (totalClicks > 0 && totalClicks < 15){
+    status.innerText = (totalClicks ) + ' votes made and ' + (15 - totalClicks) + ' to go. Keep it up!';
   };
 };
 

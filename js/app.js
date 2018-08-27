@@ -102,13 +102,13 @@ function resetButton(){
 }
 
 function resetPoll(){
+  totalClicks = 0;
   chartContainer.innerText='';
-  totalClicks == 0;
   addImages();
   for (i = 0; i < images.length; i++){
     images[i].y = 0;
-  totalClicks = 0;
-  }
+  };
   var status = document.getElementById('prompt');
   status.innerText = ('Help us pick the junk we sell you next - at markup!');
+  document.getElementById('progress-bar').style.width = Math.round(totalClicks / 15 * 100) + '%';
 }

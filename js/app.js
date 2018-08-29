@@ -66,6 +66,7 @@ function voteMade(event){
   for (i = 0; i < images.length; i++){
     if (winnerName == images[i].fileName){
       images[i].y += 1;
+      localStorage.setItem(images[i].label, images[i].y);
     };
   };
   if (totalClicks == 15){

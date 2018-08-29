@@ -17,27 +17,47 @@ function imageBuild(i){
 
 var totalClicks = 0;
 
-var productImage = function(fileName, label) {
+var productImage = function(fileName, label, clicks) {
   this.fileName = fileName;
   this.label = label;
-  this.y = 0;
+  this.y = clicks;
 };
 
+//new set of functions will check whether there is 'images' in local Storage. If there is not, the function will build an array 'images' with default values
 var images = [];
-images.push(new productImage('bag.jpg', 'R2DBag'));
-images.push(new productImage('banana.jpg', 'Banana Sectioner'));
-images.push(new productImage('boots.jpg', 'Useless Boots'));
-images.push(new productImage('chair.jpg', 'The Chair'));
-images.push(new productImage('cthulhu.jpg', 'Cthulhu'));
-images.push(new productImage('dragon.jpg', 'Dragon Meat'));
-images.push(new productImage('pen.jpg', 'Writing Utensils'));
-images.push(new productImage('scissors.jpg', 'Multipurpose Scissors'));
-images.push(new productImage('shark.jpg', 'Jaws Cosplay Kit'));
-images.push(new productImage('sweep.jpg', 'Swiffer Jr.'));
-images.push(new productImage('unicorn.jpg', 'Unicorn Meat'));
-images.push(new productImage('usb.jpg', 'Undersea USB'));
-images.push(new productImage('water_can.jpg', 'Self-Watering Can'));
-images.push(new productImage('wine_glass.jpg', 'Wine Globe'));
+
+function checkLocal(){
+  var storedImages = JSON.parse(localStorage.getItem('images'));
+  if (storedImages != null){
+    console.log(storedImages);
+    console.log('Stored images is null');
+    for (var index = 0; index < storedImages.length; index++){
+      var image = storedImages[index];
+      images.push(new productImage(image.fileName, image.label, image.y));
+    };
+  }
+  else{
+    images.push(new productImage('bag.jpg', 'R2DBag', 0));
+    images.push(new productImage('banana.jpg', 'Banana Sectioner', 0));
+    images.push(new productImage('boots.jpg', 'Useless Boots', 0));
+    images.push(new productImage('chair.jpg', 'The Chair', 0));
+    images.push(new productImage('cthulhu.jpg', 'Cthulhu', 0));
+    images.push(new productImage('dragon.jpg', 'Dragon Meat', 0));
+    images.push(new productImage('pen.jpg', 'Writing Utensils', 0));
+    images.push(new productImage('scissors.jpg', 'Multipurpose Scissors', 0));
+    images.push(new productImage('shark.jpg', 'Jaws Cosplay Kit', 0));
+    images.push(new productImage('sweep.jpg', 'Swiffer Jr.', 0));
+    images.push(new productImage('unicorn.jpg', 'Unicorn Meat', 0));
+    images.push(new productImage('usb.jpg', 'Undersea USB', 0));
+    images.push(new productImage('water_can.jpg', 'Self-Watering Can', 0));
+    images.push(new productImage('wine_glass.jpg', 'Wine Globe', 0));
+  };
+};
+
+window.addEventListener('load', checkLocal);
+
+//
+
 
 function generateRandom(min, max){
   return Math.floor((Math.random() * (max - min)) + min);
@@ -66,11 +86,11 @@ function voteMade(event){
   for (i = 0; i < images.length; i++){
     if (winnerName == images[i].fileName){
       images[i].y += 1;
-      localStorage.setItem(images[i].label, images[i].y);
     };
   };
   if (totalClicks == 15){
     chartUpdate();
+    localStorage.setItem('images', JSON.stringify(images));
     resetButton();
   }
   else {
@@ -100,7 +120,7 @@ function resetButton(){
   container.innerText = '';
   container.innerHTML = '<input type=\'button\', value=\'Take the Poll Again!\', onclick=\'resetPoll()\'></input>';
   var chartContainer = document.getElementById('chartContainer');
-}
+};
 
 function resetPoll(){
   totalClicks = 0;
@@ -112,4 +132,4 @@ function resetPoll(){
   var status = document.getElementById('prompt');
   status.innerText = ('Help us pick the junk we sell you next - at markup!');
   document.getElementById('progress-bar').style.width = Math.round(totalClicks / 15 * 100) + '%';
-}
+};

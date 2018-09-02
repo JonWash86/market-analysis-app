@@ -101,7 +101,11 @@ tr:nth-child(odd){
 }
 
 .appearing {
-  animation: 1s imageAppear;
+  animation: 2s imageAppear;
+}
+
+.disappearing {
+  animation: 1s imageHide;
 }
 
 @keyframes imageAppear {
@@ -110,5 +114,14 @@ tr:nth-child(odd){
   }
   100% {
     opacity: 1
+  }
+}
+
+@keyframes imageHide {
+  0% {
+    opacity: 1
+  }
+  100%{
+    opacity: 0
   }
 }

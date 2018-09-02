@@ -1,6 +1,7 @@
 function addImages() {
   var container = document.getElementById('image-container');
   container.innerText='';
+  console.log('addimages');
   shuffle(images);
   imageBuild(0);
   imageBuild(1);
@@ -93,7 +94,12 @@ function voteMade(event){
     resetButton();
   }
   else {
-    addImages();
+    var toSwitchOut = document.getElementsByClassName('appearing');
+    for (var index = 0; index < toSwitchOut.length; index++){
+      toSwitchOut.item(index).style.animation = '1s imageHide';
+    }
+    console.log('timeout')
+    setTimeout(addImages, 950);
   };
   document.getElementById('progress-bar').style.width = Math.round(totalClicks / 15 * 100) + '%';
 };

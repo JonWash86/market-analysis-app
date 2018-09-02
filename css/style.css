@@ -30,6 +30,23 @@ h3 {
 
 p{
   font-family: 'Helvetica', sans-serif;
+  padding-left: 15px;
+}
+
+th{
+  font-family: 'Rubik', sans-serif;
+  font-size: 32px;
+  text-align: left;
+  padding: 15px;
+  background-color: #7292DB;
+}
+
+tr:nth-child(even){
+  background-color: #95E995;
+}
+
+tr:nth-child(odd){
+  background-color: #7292DB;
 }
 
 #instructions{
@@ -65,21 +82,6 @@ p{
   z-index: -1;
 }
 
-th{
-  font-family: 'Rubik', sans-serif;
-  font-size: 32px;
-  text-align: left;
-  padding: 15px;
-  background-color: #7292DB;
-}
-
-tr:nth-child(even){
-  background-color: #95E995;
-}
-
-tr:nth-child(odd){
-  background-color: #7292DB;
-}
 
 #chartContainer{
   margin:auto;

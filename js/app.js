@@ -56,9 +56,6 @@ function checkLocal(){
 
 window.addEventListener('load', checkLocal);
 
-//
-
-
 function generateRandom(min, max){
   return Math.floor((Math.random() * (max - min)) + min);
 }
@@ -89,6 +86,7 @@ function voteMade(event){
     };
   };
   if (totalClicks == 15){
+    images.sort(function(a, b){return b.y - a.y});
     chartUpdate();
     localStorage.setItem('images', JSON.stringify(images));
     resetButton();
@@ -126,9 +124,6 @@ function resetPoll(){
   totalClicks = 0;
   chartContainer.innerText='';
   addImages();
-  for (i = 0; i < images.length; i++){
-    images[i].y = 0;
-  };
   var status = document.getElementById('prompt');
   status.innerText = ('Help us pick the junk we sell you next - at markup!');
   document.getElementById('progress-bar').style.width = Math.round(totalClicks / 15 * 100) + '%';

@@ -11,6 +11,7 @@ function imageBuild(i){
   var container = document.getElementById('image-container');
   var image = document.createElement('img');
   image.setAttribute('src', 'img/' + images[i].fileName);
+  image.setAttribute('class', 'appearing');
   image.addEventListener('click', voteMade);
   container.appendChild(image);
 };

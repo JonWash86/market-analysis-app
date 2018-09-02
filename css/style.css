@@ -62,14 +62,21 @@ tr:nth-child(odd){
 #image-container {
   display: flex;
   justify-content: center;
+  /* transition: all 0.5s 0.25s; */
 }
 
 #image-container img {
   height: 250px;
   margin: 0 20px;
-  box-shadow:3px 6px 8px #FCBA04;
+  box-shadow:3px 6px 40px #FCBA04;
   border-radius:
   cursor: pointer;
+  transition: all 0.5s;
+}
+
+#image-container img:hover {
+  box-shadow:3px 6px 8px #3BB273;
+  transform: scale(1.1);
 }
 
 #progress-bar {
@@ -91,4 +98,17 @@ tr:nth-child(odd){
   box-shadow: 3px 6px 8px Black;
   position: relative;
   height: 26px;
+}
+
+.appearing {
+  animation: 1s imageAppear;
+}
+
+@keyframes imageAppear {
+  0% {
+    opacity: 0
+  }
+  100% {
+    opacity: 1
+  }
 }

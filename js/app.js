@@ -96,10 +96,10 @@ function voteMade(event){
   else {
     var toSwitchOut = document.getElementsByClassName('appearing');
     for (var index = 0; index < toSwitchOut.length; index++){
-      toSwitchOut.item(index).style.animation = '1s imageHide';
+      toSwitchOut.item(index).style.animation = '0.5s imageHide';
     }
     console.log('timeout')
-    setTimeout(addImages, 950);
+    setTimeout(addImages, 450);
   };
   document.getElementById('progress-bar').style.width = Math.round(totalClicks / 15 * 100) + '%';
 };
